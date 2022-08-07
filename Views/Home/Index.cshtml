@@ -1,0 +1,47 @@
+﻿@model IndexVM
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="vg-page page-home" id="home" style="background-image:url(img/bg_image_1.jpg);">
+    <div class="caption wow zoomInUp">
+        <h1 class="fw-normal">Welcome</h1>
+        <h2 class="fw-medium fg-theme">I'm @Model.AboutMe.MyInfo.Name</h2>
+        <p class="tagline">@Model.AboutMe.MyInfo.Specialty</p>
+    </div>
+</div>
+<partial name="_AboutMePartial" model="Model.AboutMe" />
+<partial name="_ServicesPartial" model="Model.Services" />
+
+<!-- Page Contact -->
+<div class="vg-page page-contact" id="contact">
+    <h1 class="text-center fg-dark wow fadeInUp">Contact Me</h1>
+    <div class="container-fluid">
+        <div class="row py-5">
+            <div class="col-lg-12">
+                <form method="post" class="vg-contact-form">
+                    <div class="form-row">
+                        <div class="col-12 wow fadeInUp">
+                            <input asp-for="messageVM.Name" class="form-control" type="text" name="Name" placeholder="Your Name">
+                            <span asp-validation-for="messageVM.Name" class="text-danger"></span>
+                        </div>
+                        <div class="col-6 wow fadeInUp">
+                            <input asp-for="messageVM.Email" class="form-control" type="text" name="Email" placeholder="Email Address">
+                            <span asp-validation-for="messageVM.Email" class="text-danger"></span>
+                        </div>
+                        <div class="col-6 wow fadeInUp">
+                            <input asp-for="messageVM.Subject" class="form-control" type="text" name="Subject" placeholder="Subject">
+                            <span asp-validation-for="messageVM.Subject" class="text-danger"></span>
+                        </div>
+                        <div class="col-12 wow fadeInUp">
+                            <textarea asp-for="messageVM.Message" class="form-control" name="Message" rows="6" placeholder="Enter message here.."></textarea>
+                            <span asp-validation-for="messageVM.Message" class="text-danger"></span>
+                        </div>
+                        <button asp-controller="Home" asp-action="Index" type="submit" class="btn btn-theme mt-3 wow fadeInUp ml-1">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> <!-- End page contact -->
+<partial name="_footerPartial" model="Model.AboutMe" />

@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="copyright" content="MACode ID, https://www.macodeid.com/">
+
+    <title>Virtual Folio - Portfolio HTML5 Template</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="~/css/themify-icons.css">
+
+    <link rel="stylesheet" type="text/css" href="~/css/bootstrap.css">
+
+    <link rel="stylesheet" type="text/css" href="~/vendor/animate/animate.css">
+
+    <link rel="stylesheet" type="text/css" href="~/vendor/owl-carousel/owl.carousel.css">
+
+    <link rel="stylesheet" type="text/css" href="~/vendor/nice-select/css/nice-select.css">
+
+    <link rel="stylesheet" type="text/css" href="~/vendor/fancybox/css/jquery.fancybox.min.css">
+
+    <link rel="stylesheet" type="text/css" href="~/css/virtual.css">
+
+    <link rel="stylesheet" type="text/css" href="~/css/minibar.virtual.css">
+</head>
+<body class="theme-red">
+
+    <!-- Back to top button -->
+    <div class="btn-back_to_top">
+        <span class="ti-arrow-up"></span>
+    </div>
+
+    <div class="topbar-nav fixed-top">
+        <div class="brand">
+            <img src="~/favicon.ico" alt="" width="30" height="30">
+        </div>
+        <h3 class="ml-1">Gram</h3>
+        <button class="btn-fab toggle-menu mr-3"><span class="ti-menu"></span></button>
+    </div>
+
+    <!-- Minibar -->
+    <div class="minibar">
+        <div class="header">
+            <div class="brand">
+
+            </div>
+        </div>
+        <div class="content">
+            <ul class="main-menu">
+                <li class="menu-item active">
+                    <a href="@Url.Action("Index","Home")" class="menu-link">
+                        <span class="icon ti-home"></span>
+                        <span class="caption">Home</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#about" class="menu-link">
+                        <span class="icon ti-user"></span>
+                        <span class="caption">About</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#services" class="menu-link">
+                        <span class="icon ti-file"></span>
+                        <span class="caption">Service</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#contact" class="menu-link">
+                        <span class="icon ti-location-pin"></span>
+                        <span class="caption">Contact</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="vg-main-wrapper">
+
+    @RenderBody()
+
+        
+    </div> <!-- End main wrapper -->
+
+
+    <script src="~/js/jquery-3.5.1.min.js"></script>
+
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/vendor/owl-carousel/owl.carousel.min.js"></script>
+
+    <script src="~/vendor/isotope/isotope.pkgd.min.js"></script>
+
+    <script src="~/vendor/nice-select/js/jquery.nice-select.min.js"></script>
+
+    <script src="~/vendor/fancybox/js/jquery.fancybox.min.js"></script>
+
+    <script src="~/vendor/wow/wow.min.js"></script>
+
+    <script src="~/vendor/animateNumber/jquery.animateNumber.min.js"></script>
+
+    <script src="~/vendor/waypoints/jquery.waypoints.min.js"></script>
+
+    <script src="~/js/minibar-virtual.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

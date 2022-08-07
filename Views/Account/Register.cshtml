@@ -1,0 +1,59 @@
+﻿@model RegisterVM
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="login-wrap">
+        <div class="login-html">
+            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign Up</label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
+            <div class="login-form">
+                <form id="sign-up" method="post" asp-antiforgery="true">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="sign-in-htm">
+                        <div class="group">
+                            <label asp-for="UserName" for="user" class="label"></label>
+                            <input asp-for="UserName" id="user" type="text" class="input">
+                            <span asp-validation-for="UserName" class="textdanger"></span>
+                        </div>
+                        <div class="group">
+                            <label asp-for="Password" for="pass" class="label"></label>
+                            <input asp-for="Password" id="pass" type="password" class="input" data-type="password">
+                            <span asp-validation-for="Password" class="textdanger"></span>
+                        </div>
+                        <div class="group">
+                            <label asp-for="RePassword" for="pass" class="label"></label>
+                            <input asp-for="RePassword" id="pass" type="password" class="input" data-type="password">
+                            <span asp-validation-for="RePassword" class="textdanger"></span>
+                        </div>
+                        <div class="group">
+                            <label asp-for="Email" for="pass" class="label">Email Address</label>
+                            <input asp-for="Email" id="pass" type="text" class="input">
+                            <span asp-validation-for="Email" class="textdanger"></span>
+                        </div>
+                        <div class="group">
+                            <input id="sign-in-btn" href="Account/Register" type="submit" class="button" value="Sign Up">
+                        </div>
+                        <div class="hr"></div>
+                        <div class="foot-lnk">
+                            <a href="@Url.Action("Login" , "Account")">Already Member?</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
