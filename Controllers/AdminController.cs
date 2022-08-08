@@ -14,9 +14,9 @@ namespace PersonalWebsite.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly IHostingEnvironment _hostingEnv;
+        private readonly IWebHostEnvironment _hostingEnv;
         private readonly IRepositoryManager _repository;
-        public AdminController(IHostingEnvironment hostingEnv, IRepositoryManager repository)
+        public AdminController(IWebHostEnvironment hostingEnv, IRepositoryManager repository)
         {
             _hostingEnv = hostingEnv;
             _repository = repository;
@@ -27,7 +27,7 @@ namespace PersonalWebsite.Controllers
         }
 
         [HttpGet]
-        public IActionResult MyInformation()
+        public IActionResult Informations()
         {
             var myInfo = _repository.MyInfo.GetMyInfo(trackChanges: false);
             var vm = new MyInfoVM
@@ -46,7 +46,7 @@ namespace PersonalWebsite.Controllers
                 ImageName = myInfo.ImageName,
                 CvName = myInfo.CVName
             };
-            return View("MyInfo" , vm);
+            return View("Informations", vm);
         }
 
         [HttpPost]
@@ -102,7 +102,7 @@ namespace PersonalWebsite.Controllers
                     CVName = cvName,
                     ImagePath = imagePath,
                     ImageName = imageName
-            };
+                };
             }
 
             MyInfoModel model = new MyInfoModel
@@ -122,7 +122,189 @@ namespace PersonalWebsite.Controllers
             };
             _repository.MyInfo.UpdateMyInfo(model);
             _repository.Save();
-            return RedirectToAction("Myinformation");
+            return RedirectToAction("Informations");
+        }
+
+        [HttpGet]
+        public IActionResult Experiences()
+        {
+            var expList = _repository.Experience.GetExperiences(trackChanges: false);
+            var vm = new List<ExpVM>();
+            foreach (var item in expList)
+            {
+                ExpVM exp = new ExpVM();
+                exp.Id = item.Id;
+                exp.StartYear = item.StartYear;
+                exp.EndYear = item.EndYear;
+                exp.IsCurrent = item.IsCurrent;
+                exp.SubjectOfactivity = item.SubjectOfactivity;
+                exp.Institute = item.Institute;
+                exp.Description = item.Description;
+                vm.Add(exp);
+            }
+
+            return View("Experiences", vm);
+        }
+
+        [HttpGet]
+        public IActionResult Experience(Guid guid)
+        {
+            if (guid == Guid.Empty)
+            {
+                return View("Experience");
+
+            }
+            var exp = _repository.Experience.GetExperiences(trackChanges: false).Where(x => x.Id == guid).SingleOrDefault();
+            var vm = new ExpVM
+            {
+                Id = exp.Id,
+                StartYear = exp.StartYear,
+                EndYear = exp.EndYear,
+                IsCurrent = exp.IsCurrent,
+                SubjectOfactivity = exp.SubjectOfactivity,
+                Institute = exp.Institute,
+                Description = exp.Description
+            };
+            return View("Experience", vm);
+        }
+
+        [HttpPost]
+        public IActionResult Experience(ExpVM vm)
+        {
+            if (vm.Id == Guid.Empty)
+            {
+                ExperienceModel exp = new ExperienceModel
+                {
+                    StartYear = vm.StartYear,
+                    EndYear = vm.EndYear,
+                    IsCurrent = vm.IsCurrent,
+                    SubjectOfactivity = vm.SubjectOfactivity,
+                    Institute = vm.Institute,
+                    Description = vm.Description
+                };
+                _repository.Experience.AddExp(exp);
+                _repository.Save();
+                return RedirectToAction("Experiences");
+            }
+            else
+            {
+                var exp = _repository.Experience.GetExperiences(trackChanges: false).Where(x => x.Id == vm.Id).SingleOrDefault();
+                if (exp != null)
+                {
+                    exp.StartYear = vm.StartYear;
+                    exp.EndYear = vm.EndYear;
+                    exp.IsCurrent = vm.IsCurrent;
+                    exp.SubjectOfactivity = vm.SubjectOfactivity;
+                    exp.Institute = vm.Institute;
+                    exp.Description = vm.Description;
+                    _repository.Experience.UpdateExp(exp);
+                    _repository.Save();
+                    return RedirectToAction("Experiences");
+                }
+                return View("Experience", vm);
+            }
+
+        }
+
+        public IActionResult DeleteExperience(Guid guid)
+        {
+            var exp = _repository.Experience.GetExperiences(trackChanges: false).Where(x => x.Id == guid).SingleOrDefault();
+            if (exp != null)
+            {
+                _repository.Experience.DeleteExp(exp);
+                _repository.Save();
+            }
+            return RedirectToAction("Experiences");
+        }
+
+
+
+
+
+
+
+        [HttpGet]
+        public IActionResult Educations()
+        {
+            var expList = _repository.Education.GetEducations(trackChanges: false);
+            var vm = new List<EduVM>();
+            foreach (var item in expList)
+            {
+                EduVM exp = new EduVM();
+                exp.Id = item.Id;
+                exp.Year = item.Year;
+                exp.FieldOfStudy = item.FieldOfStudy;
+                exp.Institute = item.Institute;
+                exp.Description = item.Description;
+                vm.Add(exp);
+            }
+
+            return View("Educations", vm);
+        }
+
+        [HttpGet]
+        public IActionResult Education(Guid guid)
+        {
+            if (guid == Guid.Empty)
+            {
+                return View("Education");
+
+            }
+            var exp = _repository.Education.GetEducations(trackChanges: false).Where(x => x.Id == guid).SingleOrDefault();
+            var vm = new EduVM
+            {
+                Id = exp.Id,
+                Year = exp.Year,
+                FieldOfStudy = exp.FieldOfStudy,
+                Institute = exp.Institute,
+                Description = exp.Description
+            };
+            return View("Education", vm);
+        }
+
+        [HttpPost]
+        public IActionResult Education(EduVM vm)
+        {
+            if (vm.Id == Guid.Empty)
+            {
+                EducationModel exp = new EducationModel
+                {
+                    Year = vm.Year,
+                    FieldOfStudy = vm.FieldOfStudy,
+                    Institute = vm.Institute,
+                    Description = vm.Description
+                };
+                _repository.Education.AddEdu(exp);
+                _repository.Save();
+                return RedirectToAction("Educations");
+            }
+            else
+            {
+                var exp = _repository.Education.GetEducations(trackChanges: false).Where(x => x.Id == vm.Id).SingleOrDefault();
+                if (exp != null)
+                {
+                    exp.Year = vm.Year;
+                    exp.FieldOfStudy = vm.FieldOfStudy;
+                    exp.Institute = vm.Institute;
+                    exp.Description = vm.Description;
+                    _repository.Education.UpdateEdu(exp);
+                    _repository.Save();
+                    return RedirectToAction("Educations");
+                }
+                return View("Educations", vm);
+            }
+
+        }
+
+        public IActionResult DeleteEducation(Guid guid)
+        {
+            var exp = _repository.Education.GetEducations(trackChanges: false).Where(x => x.Id == guid).SingleOrDefault();
+            if (exp != null)
+            {
+                _repository.Education.DeleteEdu(exp);
+                _repository.Save();
+            }
+            return RedirectToAction("Educations");
         }
     }
 }

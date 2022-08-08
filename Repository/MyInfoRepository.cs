@@ -16,9 +16,7 @@ namespace PersonalWebsite.Repository
         public MyInfoModel GetMyInfo(bool trackChanges) =>
             FindAll(trackChanges).FirstOrDefault();
 
-        public void UpdateMyInfo(MyInfoModel myInfo)
-        {
+        public void UpdateMyInfo(MyInfoModel myInfo) =>
             Update(myInfo);
-        }
     }
 }

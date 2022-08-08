@@ -74,7 +74,7 @@ ul {
 }
 
 .dropdown-item {
-    text-align: right;
+    text-align: left;
 }
 .dropdown-footer, .dropdown-header {
     text-align: center;
@@ -88,7 +88,7 @@ ul {
 /*------------------------------------ contacts-list ------------------------------------*/
 
 .contacts-list-img {
-    float: right;
+    float: left;
 }
 
 .contacts-list-info {
@@ -100,11 +100,11 @@ ul {
 /* sidebar */
 
 .sidebar {
-    direction: ltr;
+    direction: rtl;
 }
 
 .sidebar > div:first-child {
-    direction: rtl;
+    direction: ltr;
 }
 
 .control-sidebar, .control-sidebar:before {
@@ -197,11 +197,11 @@ ul {
 }
 
 .user-block img {
-     float: right;
+     float: left;
 }
 
 .attachment-block .attachment-img {
-    float: right;
+    float: left;
 }
 
 .attachment-block .attachment-pushed {
@@ -210,7 +210,7 @@ ul {
 }
 
 .card-comments .card-comment img, .img-lg, .img-md, .img-sm, .user-block.user-block-sm img {
-    float: right;
+    float: left;
 }
 
 .card-comments .comment-text {
@@ -235,16 +235,16 @@ ul {
 
 /*------------------------- Form ----------------------------*/
 .select2-container .select2-search--inline {
-    float: right;
+    float: left;
 }
 
 .select2-container--default .select2-search--inline .select2-search__field {
-    text-align: right;
+    text-align: left;
 }
 
 /*----------------------- Extra Page ---------------------------*/
 .error-page>.headline {
-    float: right;
+    float: left;
 }
 
 .error-page>.error-content {

@@ -9,5 +9,9 @@ namespace PersonalWebsite.Contracts
     public interface IExperienceRepository
     {
         IEnumerable<ExperienceModel> GetExperiences(bool trackChanges);
+        void AddExp(ExperienceModel exp);
+        void UpdateExp(ExperienceModel exp);
+        void DeleteExp(ExperienceModel exp);
     }
+
 }
