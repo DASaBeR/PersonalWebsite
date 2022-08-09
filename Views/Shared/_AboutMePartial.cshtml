@@ -73,7 +73,7 @@
                     <ul class="timeline mt-4 pr-md-5">
                         @foreach (var item in Model.Experiences)
                         {
-                            if (item.IsCurrent == true)
+                            if (item.IsCurrent)
                             {
                                 <li>
                                     <div class="title">@item.StartYear - Current</div>
