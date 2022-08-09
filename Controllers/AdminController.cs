@@ -26,6 +26,8 @@ namespace PersonalWebsite.Controllers
             return View();
         }
 
+        #region Informations
+
         [HttpGet]
         public IActionResult Informations()
         {
@@ -125,6 +127,10 @@ namespace PersonalWebsite.Controllers
             return RedirectToAction("Informations");
         }
 
+#endregion
+
+        #region Expriences
+
         [HttpGet]
         public IActionResult Experiences()
         {
@@ -217,11 +223,9 @@ namespace PersonalWebsite.Controllers
             return RedirectToAction("Experiences");
         }
 
+#endregion
 
-
-
-
-
+        #region Educations
 
         [HttpGet]
         public IActionResult Educations()
@@ -230,13 +234,13 @@ namespace PersonalWebsite.Controllers
             var vm = new List<EduVM>();
             foreach (var item in expList)
             {
-                EduVM exp = new EduVM();
-                exp.Id = item.Id;
-                exp.Year = item.Year;
-                exp.FieldOfStudy = item.FieldOfStudy;
-                exp.Institute = item.Institute;
-                exp.Description = item.Description;
-                vm.Add(exp);
+                EduVM edu = new EduVM();
+                edu.Id = item.Id;
+                edu.Year = item.Year;
+                edu.FieldOfStudy = item.FieldOfStudy;
+                edu.Institute = item.Institute;
+                edu.Description = item.Description;
+                vm.Add(edu);
             }
 
             return View("Educations", vm);
@@ -250,14 +254,14 @@ namespace PersonalWebsite.Controllers
                 return View("Education");
 
             }
-            var exp = _repository.Education.GetEducations(trackChanges: false).Where(x => x.Id == guid).SingleOrDefault();
+            var edu = _repository.Education.GetEducations(trackChanges: false).Where(x => x.Id == guid).SingleOrDefault();
             var vm = new EduVM
             {
-                Id = exp.Id,
-                Year = exp.Year,
-                FieldOfStudy = exp.FieldOfStudy,
-                Institute = exp.Institute,
-                Description = exp.Description
+                Id = edu.Id,
+                Year = edu.Year,
+                FieldOfStudy = edu.FieldOfStudy,
+                Institute = edu.Institute,
+                Description = edu.Description
             };
             return View("Education", vm);
         }
@@ -267,27 +271,27 @@ namespace PersonalWebsite.Controllers
         {
             if (vm.Id == Guid.Empty)
             {
-                EducationModel exp = new EducationModel
+                EducationModel edu = new EducationModel
                 {
                     Year = vm.Year,
                     FieldOfStudy = vm.FieldOfStudy,
                     Institute = vm.Institute,
                     Description = vm.Description
                 };
-                _repository.Education.AddEdu(exp);
+                _repository.Education.AddEdu(edu);
                 _repository.Save();
                 return RedirectToAction("Educations");
             }
             else
             {
-                var exp = _repository.Education.GetEducations(trackChanges: false).Where(x => x.Id == vm.Id).SingleOrDefault();
-                if (exp != null)
+                var edu = _repository.Education.GetEducations(trackChanges: false).Where(x => x.Id == vm.Id).SingleOrDefault();
+                if (edu != null)
                 {
-                    exp.Year = vm.Year;
-                    exp.FieldOfStudy = vm.FieldOfStudy;
-                    exp.Institute = vm.Institute;
-                    exp.Description = vm.Description;
-                    _repository.Education.UpdateEdu(exp);
+                    edu.Year = vm.Year;
+                    edu.FieldOfStudy = vm.FieldOfStudy;
+                    edu.Institute = vm.Institute;
+                    edu.Description = vm.Description;
+                    _repository.Education.UpdateEdu(edu);
                     _repository.Save();
                     return RedirectToAction("Educations");
                 }
@@ -298,13 +302,175 @@ namespace PersonalWebsite.Controllers
 
         public IActionResult DeleteEducation(Guid guid)
         {
-            var exp = _repository.Education.GetEducations(trackChanges: false).Where(x => x.Id == guid).SingleOrDefault();
-            if (exp != null)
+            var edu = _repository.Education.GetEducations(trackChanges: false).Where(x => x.Id == guid).SingleOrDefault();
+            if (edu != null)
             {
-                _repository.Education.DeleteEdu(exp);
+                _repository.Education.DeleteEdu(edu);
                 _repository.Save();
             }
             return RedirectToAction("Educations");
         }
+
+#endregion
+
+        #region Skills
+
+        [HttpGet]
+        public IActionResult Skills()
+        {
+            var skillList = _repository.Skills.GetSkills(trackChanges: false);
+            var vm = new List<SkillVM>();
+            foreach (var item in skillList)
+            {
+                SkillVM skill = new SkillVM();
+                skill.Id = item.Id;
+                skill.SkillName = item.SkillName;
+                skill.Percentage = item.Percentage;
+                vm.Add(skill);
+            }
+
+            return View("Skills", vm);
+        }
+
+        [HttpGet]
+        public IActionResult Skill(Guid guid)
+        {
+            if (guid == Guid.Empty)
+            {
+                return View("Skill");
+
+            }
+            var skill = _repository.Skills.GetSkills(trackChanges: false).Where(x => x.Id == guid).SingleOrDefault();
+            var vm = new SkillVM
+            {
+                Id = skill.Id,
+                SkillName = skill.SkillName,
+                Percentage = skill.Percentage,
+            };
+            return View("Skill", vm);
+        }
+
+        [HttpPost]
+        public IActionResult Skill(SkillVM vm)
+        {
+            if (vm.Id == Guid.Empty)
+            {
+                SkillsModel skill = new SkillsModel
+                {
+                    SkillName = vm.SkillName,
+                    Percentage = vm.Percentage,
+                };
+                _repository.Skills.AddSkill(skill);
+                _repository.Save();
+                return RedirectToAction("Skills");
+            }
+            else
+            {
+                var skill = _repository.Skills.GetSkills(trackChanges: false).Where(x => x.Id == vm.Id).SingleOrDefault();
+                if (skill != null)
+                {
+                    skill.SkillName = vm.SkillName;
+                    skill.Percentage = vm.Percentage;
+                    _repository.Skills.UpdateSkill(skill);
+                    _repository.Save();
+                    return RedirectToAction("Skills");
+                }
+                return View("Skills", vm);
+            }
+
+        }
+
+        public IActionResult DeleteSkill(Guid guid)
+        {
+            var skill = _repository.Skills.GetSkills(trackChanges: false).Where(x => x.Id == guid).SingleOrDefault();
+            if (skill != null)
+            {
+                _repository.Skills.DeleteSkill(skill);
+                _repository.Save();
+            }
+            return RedirectToAction("Skills");
+        }
+
+#endregion
+
+        #region Services
+
+        [HttpGet]
+        public IActionResult Services()
+        {
+            var skillList = _repository.Services.GetServices(trackChanges: false);
+            var vm = new List<ServiceVM>();
+            foreach (var item in skillList)
+            {
+                ServiceVM service = new ServiceVM();
+                service.Id = item.Id;
+                service.ServiceName = item.ServiceName;
+                service.Description = item.Description;
+                vm.Add(service);
+            }
+
+            return View("Services", vm);
+        }
+
+        [HttpGet]
+        public IActionResult Service(Guid guid)
+        {
+            if (guid == Guid.Empty)
+            {
+                return View("Service");
+
+            }
+            var service = _repository.Services.GetServices(trackChanges: false).Where(x => x.Id == guid).SingleOrDefault();
+            var vm = new ServiceVM
+            {
+                Id = service.Id,
+                ServiceName = service.ServiceName,
+                Description = service.Description,
+            };
+            return View("Service", vm);
+        }
+
+        [HttpPost]
+        public IActionResult Service(ServiceVM vm)
+        {
+            if (vm.Id == Guid.Empty)
+            {
+                ServicesModel service = new ServicesModel
+                {
+                    ServiceName = vm.ServiceName,
+                    Description = vm.Description,
+                };
+                _repository.Services.AddService(service);
+                _repository.Save();
+                return RedirectToAction("Services");
+            }
+            else
+            {
+                var service = _repository.Services.GetServices(trackChanges: false).Where(x => x.Id == vm.Id).SingleOrDefault();
+                if (service != null)
+                {
+                    service.ServiceName = vm.ServiceName;
+                    service.Description = vm.Description;
+                    _repository.Services.UpdateService(service);
+                    _repository.Save();
+                    return RedirectToAction("Services");
+                }
+                return View("Services", vm);
+            }
+
+        }
+
+        public IActionResult DeleteService(Guid guid)
+        {
+            var service = _repository.Services.GetServices(trackChanges: false).Where(x => x.Id == guid).SingleOrDefault();
+            if (service != null)
+            {
+                _repository.Services.DeleteService(service);
+                _repository.Save();
+            }
+            return RedirectToAction("Services");
+        }
+
+        #endregion
     }
 }

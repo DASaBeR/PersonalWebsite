@@ -15,5 +15,14 @@ namespace PersonalWebsite.Repository
 
         public IEnumerable<SkillsModel> GetSkills(bool trackChanges) =>
             FindAll(trackChanges).OrderBy(c => c.SkillName).ToList();
+
+        public void AddSkill(SkillsModel skill) =>
+            Create(skill);
+
+        public void DeleteSkill(SkillsModel skill) =>
+            Delete(skill);
+
+        public void UpdateSkill(SkillsModel skill) =>
+            Update(skill);
     }
 }

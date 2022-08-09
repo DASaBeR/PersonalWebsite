@@ -9,5 +9,8 @@ namespace PersonalWebsite.Contracts
     public interface IServicesRepository
     {
         IEnumerable<ServicesModel> GetServices(bool trackChanges);
+        void AddService(ServicesModel service);
+        void UpdateService(ServicesModel service);
+        void DeleteService(ServicesModel service);
     }
 }

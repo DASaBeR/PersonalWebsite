@@ -9,5 +9,8 @@ namespace PersonalWebsite.Contracts
     public interface ISkillsRepository
     {
         IEnumerable<SkillsModel> GetSkills(bool trackChanges);
+        void AddSkill(SkillsModel skill);
+        void UpdateSkill(SkillsModel skill);
+        void DeleteSkill(SkillsModel skill);
     }
 }

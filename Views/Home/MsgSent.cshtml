@@ -3,7 +3,14 @@
     ViewData["Title"] = "Message Sent";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            window.location.href = "https://localhost:5001";
+        }, 5000);
+    });
+</script>
 <div style="margin:auto; margin-top:20px!important; margin-left:20px!important" class="col-md-12 align-middle">
     <div class="caption wow fadeInRight align-middle">
         <h2 class="fg-dark">Dear @Model.Name</h2>

@@ -9,8 +9,8 @@ namespace PersonalWebsite.Contracts
     public interface IEducationRepository
     {
         IEnumerable<EducationModel> GetEducations(bool trackChanges);
-        void AddEdu(EducationModel exp);
-        void UpdateEdu(EducationModel exp);
-        void DeleteEdu(EducationModel exp);
+        void AddEdu(EducationModel edu);
+        void UpdateEdu(EducationModel edu);
+        void DeleteEdu(EducationModel edu);
     }
 }
