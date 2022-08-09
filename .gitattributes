@@ -62,5 +62,8 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
-* linguist-vendored
-*.cs linguist-vendored=false
+#####################vendored######################
+*.cs linguist-detectable=true  
+*.js linguist-detectable=false  
+*.html linguist-detectable=false  
+*.css linguist-detectable=false  
