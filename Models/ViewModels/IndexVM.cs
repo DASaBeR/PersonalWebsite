@@ -9,7 +9,7 @@ namespace PersonalWebsite.Models.ViewModels
     {
         public AboutMeVM AboutMe { get; set; }
         public IEnumerable<ServicesModel> Services { get; set; }
-        public CreateMessageVM messageVM { get; set; }
+        public ContactVM messageVM { get; set; }
 
     }
 }

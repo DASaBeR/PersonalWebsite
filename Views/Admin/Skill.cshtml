@@ -1,0 +1,40 @@
+﻿@model SkillVM
+@{
+    ViewData["Title"] = "Skill";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div style="padding: 60px 200px 60px;" class="col-md-12">
+    <div class="card card-warning">
+        <div class="card-header">
+            <h3 class="card-title">Information Form</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <form role="form" method="post" href="@Url.Action("Skill" , "Admin")">
+                <!-- text input -->
+                <div class="form-group">
+                    <label>Skill Name</label>
+                    <input asp-for="SkillName" type="text"
+                           class="form-control"
+                           placeholder="Enter Skill Name . . ." />
+                </div>
+                <div class="form-group">
+                    <label>Skill Percentage</label>
+                    <input asp-for="Percentage" type="text"
+                           class="form-control"
+                           placeholder="Enter number 0-100 . . ." />
+                </div>
+                <div class="form-check">
+                    <input hidden asp-for="Id" class="form-check-input"
+                           type="text" />
+                </div>
+                <br />
+                <button class="btn btn-success" type="submit">
+                    Submit
+                </button>
+            </form>
+        </div>
+        <!-- /.card-body -->
+    </div>
+</div>

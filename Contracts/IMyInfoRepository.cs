@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 namespace PersonalWebsite.Contracts
 {
 
-    public interface IMyInfoRepository
-    {
-        MyInfoModel GetMyInfo(bool trackChanges);
-        void UpdateMyInfo(MyInfoModel myInfo);
-    }
+	public interface IMyInfoRepository
+	{
+		MyInfoModel GetMyInfo(bool trackChanges);
+		void AddMyInfo(MyInfoModel myInfo);
+
+		void UpdateMyInfo(MyInfoModel myInfo);
+	}
 }

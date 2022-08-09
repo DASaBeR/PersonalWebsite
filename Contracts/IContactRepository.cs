@@ -8,6 +8,8 @@ namespace PersonalWebsite.Contracts
 {
     public interface IContactRepository
     {
+        IEnumerable<ContactModel> GetMessages(bool trackChanges);
+        void DeleteMessage(ContactModel message);
         void SaveContactMessage(ContactModel contactMessage);
     }
 }

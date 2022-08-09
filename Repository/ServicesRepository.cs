@@ -15,5 +15,14 @@ namespace PersonalWebsite.Repository
 
         public IEnumerable<ServicesModel> GetServices(bool trackChanges) =>
             FindAll(trackChanges).ToList();
+
+        public void AddService(ServicesModel service) =>
+            Create(service);
+
+        public void DeleteService(ServicesModel service) =>
+            Delete(service);
+
+        public void UpdateService(ServicesModel service) =>
+            Update(service);
     }
 }

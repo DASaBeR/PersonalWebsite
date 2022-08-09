@@ -15,5 +15,13 @@ namespace PersonalWebsite.Repository
 
         public IEnumerable<EducationModel> GetEducations(bool trackChanges) =>
             FindAll(trackChanges).OrderBy(c => c.Year).ToList();
+        public void AddEdu(EducationModel edu) =>
+            Create(edu);
+
+        public void DeleteEdu(EducationModel edu) =>
+            Delete(edu);
+
+        public void UpdateEdu(EducationModel edu) =>
+            Update(edu);
     }
 }
