@@ -1,5 +1,4 @@
 * .cshtml linguist-language=C#
-*.html linguist-language=C#
 ###############################################################################
 # Set default behavior to automatically normalize line endings.
 ###############################################################################
