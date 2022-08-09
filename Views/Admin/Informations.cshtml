@@ -15,13 +15,13 @@
                 <!-- text input -->
                 <div class="form-group">
                     <label>FullName</label>
-                    <input value="@Model.Name" asp-for="Name" type="text"
+                    <input asp-for="Name" type="text"
                            class="form-control"
                            placeholder="Enter Your FullName . . ." />
                 </div>
                 <div class="form-group">
                     <label>Specialty</label>
-                    <input value="@Model.Specialty" asp-for="Specialty" type="text"
+                    <input asp-for="Specialty" type="text"
                            class="form-control"
                            placeholder="Enter Your Specialty . . ." />
                 </div>
@@ -35,49 +35,49 @@
                 </div>
                 <div class="form-group">
                     <label>Country</label>
-                    <input value="@Model.From" asp-for="From" type="text"
+                    <input asp-for="From" type="text"
                            class="form-control"
                            placeholder="Enter Your Country . . ." />
                 </div>
                 <div class="form-group">
                     <label>Living City</label>
-                    <input value="@Model.LivesIn" asp-for="LivesIn" type="text"
+                    <input asp-for="LivesIn" type="text"
                            class="form-control"
                            placeholder="Enter City That Live Now . . ." />
                 </div>
                 <div class="form-group">
                     <label>Age</label>
-                    <input value="@Model.Age" asp-for="Age" type="text"
+                    <input asp-for="Age" type="text"
                            class="form-control"
                            placeholder="Enter Your Country . . ." />
                 </div>
                 <div class="form-group">
                     <label>Phone</label>
-                    <input value="@Model.Phone" asp-for="Phone" type="text"
+                    <input asp-for="Phone" type="text"
                            class="form-control"
                            placeholder="Enter Your Country . . ." />
                 </div>
                 <div class="form-group">
                     <label>Email</label>
-                    <input value="@Model.Email" asp-for="Email" type="text"
+                    <input asp-for="Email" type="text"
                            class="form-control"
                            placeholder="Enter Your Country . . ." />
                 </div>
                 <div class="form-group">
                     <label>Telegram ID</label>
-                    <input value="@Model.TelegramId" asp-for="TelegramId" type="text"
+                    <input asp-for="TelegramId" type="text"
                            class="form-control"
                            placeholder="Enter Your Country . . ." />
                 </div>
                 <div class="form-group">
                     <label>Linkdin</label>
-                    <input value="@Model.Linkdin" asp-for="Linkdin" type="text"
+                    <input asp-for="Linkdin" type="text"
                            class="form-control"
                            placeholder="Enter Your Country . . ." />
                 </div>
                 <div class="form-group">
                     <label>GitHub</label>
-                    <input value="@Model.Github" asp-for="Github" type="text"
+                    <input asp-for="Github" type="text"
                            class="form-control"
                            placeholder="Enter Your Country . . ." />
                 </div>
@@ -85,7 +85,7 @@
                     <label for="exampleInputFile">Upload Your Image</label>
                     <div class="input-group">
                         <div class="custom-file">
-                            <input value="@Model.ImageName" asp-for="Image" type="file" class="custom-file-input" id="ImageFileInput" placeholder="Choose .jpg Image . . .">
+                            <input asp-for="Image" type="file" class="custom-file-input" id="ImageFileInput" placeholder="Choose .jpg Image . . .">
                             <label class="custom-file-label" for="ImageFileInput">Choose .jpg Image</label>
                         </div>
                         <div class="input-group-append">
@@ -96,7 +96,7 @@
                     <label for="exampleInputFile">Upload CV</label>
                     <div class="input-group">
                         <div class="custom-file">
-                            <input value="@Model.CvName" asp-for="MyCV" type="file" class="custom-file-input" id="CvFileInput">
+                            <input asp-for="MyCV" type="file" class="custom-file-input" id="CvFileInput">
                             <label class="custom-file-label" for="CvFileInput">Choose File</label>
                         </div>
                         <div class="input-group-append">

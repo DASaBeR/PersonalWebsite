@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -16,62 +17,72 @@ using System.Threading.Tasks;
 
 namespace PersonalWebsite
 {
-    public class Startup
-    {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+	public class Startup
+	{
+		public Startup(IConfiguration configuration)
+		{
+			Configuration = configuration;
+		}
 
-        public IConfiguration Configuration { get; }
+		public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddDefaultIdentity <User>().AddRoles<IdentityRole>().AddEntityFrameworkStores<RepositoryContext>();
-            services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            }).AddCookie();
-            services.ConfigureIdentity();
-            services.AddAutoMapper(typeof(Startup));
-            services.ConfigureSqlContext(Configuration);
-            services.ConfigureRepositoryManager();
+		// This method gets called by the runtime. Use this method to add services to the container.
+		public void ConfigureServices(IServiceCollection services)
+		{
+			services.AddControllersWithViews();
+			
+			services.AddAutoMapper(typeof(Startup));
+			services.ConfigureSqlContext(Configuration);
+			services.ConfigureRepositoryManager();
 
-
-
-
-            services.AddControllersWithViews();
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseStatusCodePages();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
-            
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseRouting();
-            app.UseAuthentication();
-            app.UseAuthorization();
+			services.AddDefaultIdentity<User>().AddRoles<IdentityRole>().AddEntityFrameworkStores<RepositoryContext>();
+			services.ConfigureApplicationCookie(options =>
+			{
+				options.Events.OnRedirectToLogin = context =>
+				{
+					context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+					return Task.CompletedTask;
+				};
+				options.Events.OnRedirectToAccessDenied = context =>
+				{
+					context.Response.StatusCode = StatusCodes.Status403Forbidden;
+					return Task.CompletedTask;
+				};
+			});
+			services.ConfigureIdentity();
+			
 
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
-        }
-    }
+		}
+
+		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+		{
+			if (env.IsDevelopment())
+			{
+				app.UseDeveloperExceptionPage();
+				app.UseStatusCodePages();
+			}
+			else
+			{
+				app.UseExceptionHandler("/Home/Error");
+				// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+				app.UseHsts();
+			}
+
+			//app.UseHttpsRedirection();
+			app.UseStaticFiles();
+			app.UseRouting();
+			app.UseAuthentication();
+			app.UseAuthorization();
+
+
+			app.UseEndpoints(endpoints =>
+			{
+				endpoints.MapControllerRoute(
+									name: "default",
+									pattern: "{controller=Home}/{action=Index}/{id?}");
+			});
+		}
+	}
 }
