@@ -59,10 +59,10 @@ namespace PersonalWebsite.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult MyInformation(MyInfoVM vm)
+		public IActionResult Informations(MyInfoVM vm)
 		{
 			var myInfo = _repository.MyInfo.GetMyInfo(trackChanges: false);
-			if (vm.MyCV != null && vm.Image != null)
+			if (vm.MyCV != null && vm.Image != null && myInfo != null)
 			{
 				//upload files to wwwroot
 				var cvName = Path.GetFileName(vm.MyCV.FileName);
@@ -112,7 +112,34 @@ namespace PersonalWebsite.Controllers
 					ImagePath = imagePath,
 					ImageName = imageName
 				};
+				_repository.MyInfo.UpdateMyInfo(model2);
+				_repository.Save();
+				return RedirectToAction("Informations");
 			}
+
+			if (myInfo == null)
+			{
+				MyInfoModel model3 = new MyInfoModel
+				{
+					Id = Guid.NewGuid(),
+					Name = vm.Name,
+					Specialty = vm.Specialty,
+					Description = vm.Description,
+					From = vm.From,
+					LivesIn = vm.LivesIn,
+					Age = vm.Age,
+					Phone = vm.Phone,
+					Email = vm.Email,
+					TelegramId = vm.TelegramId,
+					Linkdin = vm.Linkdin,
+					Github = vm.Github,
+				};
+				_repository.MyInfo.AddMyInfo(model3);
+				_repository.Save();
+				return RedirectToAction("Informations");
+			}
+
+
 
 			MyInfoModel model = new MyInfoModel
 			{

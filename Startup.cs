@@ -30,7 +30,6 @@ namespace PersonalWebsite
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddControllersWithViews();
-			
 			services.AddAutoMapper(typeof(Startup));
 			services.ConfigureSqlContext(Configuration);
 			services.ConfigureRepositoryManager();
@@ -40,7 +39,7 @@ namespace PersonalWebsite
 			{
 				options.Events.OnRedirectToLogin = context =>
 				{
-					context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+					context.Response.StatusCode = StatusCodes.Status403Forbidden;
 					return Task.CompletedTask;
 				};
 				options.Events.OnRedirectToAccessDenied = context =>
@@ -83,6 +82,7 @@ namespace PersonalWebsite
 									name: "default",
 									pattern: "{controller=Home}/{action=Index}/{id?}");
 			});
+			app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 		}
 	}
 }

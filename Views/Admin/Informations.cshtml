@@ -3,7 +3,6 @@
     ViewData["Title"] = "My Information";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-
 <div class="col-md-12">
     <div class="card card-warning">
         <div class="card-header">
@@ -11,7 +10,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-            <form role="form" method="post" href="@Url.Action("MyInformation","Admin")">
+            <form role="form" method="post" href="@Url.Action("Informations","Admin")">
                 <!-- text input -->
                 <div class="form-group">
                     <label>FullName</label>
@@ -81,7 +80,7 @@
                            class="form-control"
                            placeholder="Enter Your Country . . ." />
                 </div>
-                <div class="form-group">
+                @*<div class="form-group">
                     <label for="exampleInputFile">Upload Your Image</label>
                     <div class="input-group">
                         <div class="custom-file">
@@ -102,7 +101,7 @@
                         <div class="input-group-append">
                         </div>
                     </div>
-                </div>
+                </div>*@
                 <button role="button" class="btn btn-success" type="submit">Submit</button>
             </form>
         </div>
