@@ -63,7 +63,7 @@
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
 #####################vendored######################
- *.cs linguist-detectable=true  
+*.cs linguist-detectable=true  
 *.js linguist-detectable=false  
 *.html linguist-detectable=false  
 *.css linguist-detectable=false 
