@@ -12,7 +12,7 @@ namespace PersonalWebsite
     {
         public MappingProfile()
         {
-            CreateMap<ContactModel, CreateMessageVM>();
+            CreateMap<ContactModel, ContactVM>();
         }
     }
 }

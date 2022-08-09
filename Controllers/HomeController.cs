@@ -14,7 +14,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace PersonalWebsite.Controllers
 {
-	[Authorize]
 	public class HomeController : Controller
 	{
 		private readonly IRepositoryManager _repository;
@@ -65,7 +64,7 @@ namespace PersonalWebsite.Controllers
 			return View(vm);
 		}
 		[HttpPost]
-		public IActionResult Index([FromForm] CreateMessageVM vm)
+		public IActionResult Index([FromForm] ContactVM vm)
 		{
 			var myInfo = _repository.MyInfo.GetMyInfo(trackChanges: false);
 			var skills = _repository.Skills.GetSkills(trackChanges: false);
@@ -99,7 +98,7 @@ namespace PersonalWebsite.Controllers
 						Experiences = experiences
 					},
 					Services = services,
-					messageVM = new CreateMessageVM
+					messageVM = new ContactVM
 					{
 						Name = vm.Name,
 						Email = vm.Email,

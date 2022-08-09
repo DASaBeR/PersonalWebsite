@@ -58,9 +58,11 @@
         }
 
         table.table th:last-child {
-            width: 100px;
+            width: 15%;
         }
-
+        table.table th:first-child {
+            width: 50%;
+        }
         table.table td a {
             cursor: pointer;
             display: inline-block;
@@ -105,13 +107,16 @@
         table.table td .add {
             display: none;
         }
+    table {
+        text-align: center;
+    }
 </style>
 <div class="container-lg">
     <div style="scrollbar-gutter: stable;" class="table-responsive">
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-8"><h2>Expriences</h2></div>
+                    <div class="col-sm-8"><h2>Educations</h2></div>
                     <div class="col-sm-4">
                         <a href="@Url.Action("Education" , "Admin")" class="btn btn-info add-new"><i class="fa fa-plus"></i> Add New</a>
                     </div>
@@ -121,7 +126,7 @@
                 <thead>
                     <tr>
                         <th>Institute</th>
-                        <th>FieldOfStudy</th>
+                        <th style="width:25%">FieldOfStudy</th>
                         <th>Year</th>
                     </tr>
                 </thead>

@@ -3,7 +3,7 @@
     ViewData["Title"] = "My Information";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<div class="col-md-12">
+<div style="padding: 60px 200px 60px;" class="col-md-12">
     <div class="card card-warning">
         <div class="card-header">
             <h3 class="card-title">Information Form</h3>
@@ -81,27 +81,27 @@
                            placeholder="Enter Your Country . . ." />
                 </div>
                 @*<div class="form-group">
-                    <label for="exampleInputFile">Upload Your Image</label>
-                    <div class="input-group">
-                        <div class="custom-file">
-                            <input asp-for="Image" type="file" class="custom-file-input" id="ImageFileInput" placeholder="Choose .jpg Image . . .">
-                            <label class="custom-file-label" for="ImageFileInput">Choose .jpg Image</label>
-                        </div>
-                        <div class="input-group-append">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputFile">Upload CV</label>
-                    <div class="input-group">
-                        <div class="custom-file">
-                            <input asp-for="MyCV" type="file" class="custom-file-input" id="CvFileInput">
-                            <label class="custom-file-label" for="CvFileInput">Choose File</label>
-                        </div>
-                        <div class="input-group-append">
+                        <label for="exampleInputFile">Upload Your Image</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input asp-for="Image" type="file" class="custom-file-input" id="ImageFileInput" placeholder="Choose .jpg Image . . .">
+                                <label class="custom-file-label" for="ImageFileInput">Choose .jpg Image</label>
+                            </div>
+                            <div class="input-group-append">
+                            </div>
                         </div>
                     </div>
-                </div>*@
+                    <div class="form-group">
+                        <label for="exampleInputFile">Upload CV</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input asp-for="MyCV" type="file" class="custom-file-input" id="CvFileInput">
+                                <label class="custom-file-label" for="CvFileInput">Choose File</label>
+                            </div>
+                            <div class="input-group-append">
+                            </div>
+                        </div>
+                    </div>*@
                 <button role="button" class="btn btn-success" type="submit">Submit</button>
             </form>
         </div>

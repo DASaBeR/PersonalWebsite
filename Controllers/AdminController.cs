@@ -521,6 +521,50 @@ namespace PersonalWebsite.Controllers
 			return RedirectToAction("Services");
 		}
 
-		#endregion
-	}
+        #endregion
+
+        #region Contacts
+
+		public IActionResult Messages()
+        {
+			var messages = _repository.Contact.GetMessages(trackChanges: false);
+			var vm = new List<ContactVM>();
+            foreach (var item in messages)
+            {
+				var message = new ContactVM
+				{
+					Id = item.Id,
+					Name = item.Name,
+					Subject = item.Subject,
+					Email = item.EmailAdrress,
+					Message = item.Message
+				};
+				vm.Add(message);
+			}
+			
+			return View("Messages" , vm);
+        }
+
+		public IActionResult Message(Guid guid)
+        {
+			var message = _repository.Contact.GetMessages(trackChanges: false).Where(x => x.Id == guid).SingleOrDefault();
+			var vm = new ContactVM
+			{
+				Id = message.Id,
+				Name = message.Name,
+				Subject = message.Subject,
+				Email = message.EmailAdrress,
+				Message = message.Message
+			};
+			return View("Message", vm);
+        }
+		public IActionResult DeleteMessage(Guid guid)
+        {
+			var message = _repository.Contact.GetMessages(trackChanges: false).Where(x => x.Id == guid).SingleOrDefault();
+			_repository.Contact.DeleteMessage(message);
+			_repository.Save();
+			return RedirectToAction("Messages");
+        }
+        #endregion
+    }
 }

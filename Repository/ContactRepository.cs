@@ -13,9 +13,12 @@ namespace PersonalWebsite.Repository
         {
         }
 
-        public void SaveContactMessage(ContactModel contactMessage)
-        {
+        public IEnumerable<ContactModel> GetMessages(bool trackChanges) =>
+            FindAll(trackChanges).ToList();
+        public void DeleteMessage(ContactModel message) =>
+            Delete(message);
+        public void SaveContactMessage(ContactModel contactMessage) =>
             Create(contactMessage);
-        }
+
     }
 }

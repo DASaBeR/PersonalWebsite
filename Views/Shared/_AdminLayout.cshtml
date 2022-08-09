@@ -58,7 +58,7 @@ to get the desired effect
             <!-- SEARCH FORM -->
             <form class="form-inline ml-3">
                 <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="جستجو" aria-label="Search">
+                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
                     <div class="input-group-append">
                         <button class="btn btn-navbar" type="submit">
                             <i class="fa fa-search"></i>
@@ -202,6 +202,12 @@ to get the desired effect
                                             <p>Educations</p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="@Url.Action("Messages" , "Admin")" class="nav-link">
+                                            <i class="fa fa-circle-o nav-icon"></i>
+                                            <p>Messages</p>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
@@ -218,7 +224,7 @@ to get the desired effect
             <!-- /.content-header -->
             <!-- Main content -->
             <div class="content">
-                <div style="padding: 35px 119px" class="container-fluid">
+                <div class="container-fluid">
                     <div class="row">
                         @RenderBody()
                     </div>

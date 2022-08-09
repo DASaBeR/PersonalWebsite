@@ -1,0 +1,65 @@
+﻿@model ContactVM
+@{
+    ViewData["Title"] = "Message";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section style="margin-top: 40px;margin-right:20px;width:100%" class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <a href="@Url.Action("Messages" , "Admin")" class="btn btn-primary btn-block mb-3">Back To Inbox</a>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-9">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">Message From @Model.Name</h3>
+
+                        <div class="card-tools">
+                            <a href="#" class="btn btn-tool" data-toggle="tooltip" title="Previous"><i class="fa fa-chevron-right"></i></a>
+                            <a href="#" class="btn btn-tool" data-toggle="tooltip" title="Next"><i class="fa fa-chevron-left"></i></a>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body p-0">
+                        <div class="mailbox-read-info">
+                            <h5>@Model.Subject</h5>
+                            <h6>@Model.Email
+                                @*<span class="mailbox-read-time float-left">15 دی 1397 ساعت 12:00</span>*@
+                            </h6>
+                        </div>
+                        <!-- /.mailbox-read-info -->
+                        <div class="mailbox-controls with-border text-center">
+                            <div class="btn-group">
+                                <a href="@Url.Action("DeleteMessage" , "Admin" , new { guid = Model.Id })" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Delete">
+                                    <i class="fa fa-trash-o"></i>
+                                </a>
+                            </div>
+                            <!-- /.btn-group -->
+                            <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Print">
+                                <i class="fa fa-print"></i>
+                            </button>
+                        </div>
+                        <!-- /.mailbox-controls -->
+                        <div class="mailbox-read-message">
+                            <p>@Model.Message</p>
+                        </div>
+                        <!-- /.mailbox-read-message -->
+                    </div>
+                    <!-- /.card-body -->
+                    <!-- /.card-footer -->
+                    <div class="card-footer">
+                        <button href="@Url.Action("DeleteMessage" , "Admin" , new { guid = Model.Id })" class="btn btn-default"><i class="fa fa-trash-o"></i>Delete</button>
+                        <button type="button" class="btn btn-default"><i class="fa fa-print"></i>Print</button>
+                    </div>
+                    <!-- /.card-footer -->
+                </div>
+                <!-- /. box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+</section>
+

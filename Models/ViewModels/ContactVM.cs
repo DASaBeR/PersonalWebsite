@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace PersonalWebsite.Models.ViewModels
 {
-    public class CreateMessageVM
+    public class ContactVM
     {
+        public Guid Id { get; set; }
         [Required(ErrorMessage = "Please Enter Your Name.")]
         [MaxLength(60, ErrorMessage = "Your name should be less than 60 charracters.")]
         public string Name { get; set; }

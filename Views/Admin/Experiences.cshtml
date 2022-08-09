@@ -57,10 +57,15 @@
             cursor: pointer;
         }
 
-        table.table th:last-child {
-            width: 100px;
+        table.table th:first-child {
+            width: 30% !important;
         }
-
+        table.table th:last-child {
+            width: 15%;
+        }
+        table.table th:nth-child(2n+1) {
+            width: 15%;
+        }
         table.table td a {
             cursor: pointer;
             display: inline-block;
@@ -105,6 +110,9 @@
         table.table td .add {
             display: none;
         }
+    table {
+        text-align: center;
+    }
 </style>
 <div class="container-lg">
     <div style="scrollbar-gutter: stable;" class="table-responsive">
