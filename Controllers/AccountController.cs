@@ -62,7 +62,7 @@ namespace PersonalWebsite.Controllers
 			return View("Login", vm);
 		}
 
-
+		[Authorize]
 		[HttpGet]
 		public IActionResult Register()
 		{
